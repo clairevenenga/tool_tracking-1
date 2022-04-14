@@ -42,12 +42,9 @@ while True:
 
     # Enumerate dictionary to access tools
     for tool, index in enumerate(tool_dict):
-        #if not isinstance(tool, dict):
-        #    continue
         #print(serial_data, tool, tool_dict[index], tool_dict[index].get('status'), tool_dict[index].get('time'))
         # Limit number of times the RFID tag is read
         if float(tool_dict[index].get('time')) + 5 < time.time() and serial_data == index:
-            print(serial_data)
             # If tool is scanned while "Available" then update as "unavailable"
             if tool_dict[index].get('status') == 'Available':
                 ref.update({index:{'status': 'Unavailable', 'time':str(curr_time)}})
